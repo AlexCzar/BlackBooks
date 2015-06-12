@@ -1,0 +1,34 @@
+== Test task: [Black Books]
+
+=== Overview
+This is a simple CRUD application, you can run it in console by changing to the application directory and executing
+ `./gradlew bootRun` on linux or `gradlew.bat bootRun` on windows. You have to write a single page front-end for it
+ using Bootstrap and AngularJS as if it was a production project. All functions presented in the API section must be
+ covered, list of books must be sortable by any field and editable (add a book, delete a book, edit a book),
+ user must have a way to view full details of a book, application must be responsive. Forms must be validated and
+ both client-side and server-side validation errors must be displayed.
+
+Put static resources (html, js, css) in
+ `src/main/resources/static`. Application will try to load index.html by default when you open
+ `http://localhost:8080`.
+
+=== API
+
+[source, json]
+.Book format
+----
+{
+  "title": "Ravenor Omnibus",
+  "id": "1231723-12371-3713-2444-385",
+  "authors": ["Dan Abnett"],
+  "series": "Ravenor",
+  "seriesId": 0
+}
+----
+
+`GET /books` :: this request will return a JSON list containing all the books' ids and titles.
+`GET /books/{ID}` :: {ID} is the ID of a book, returns full JSON representation of the book specified.
+`POST /books` :: this request must have `Content-Type: application/json` header and a JSON body representing a book.
+`series` and `seriesId` properties are optional, the rest have to be specified.
+`PUT /books` :: same header and body as `POST`, finds book with the same ID as provided one and replaces it.
+`DELETE /books/{ID}` :: removes specified book from the list.
